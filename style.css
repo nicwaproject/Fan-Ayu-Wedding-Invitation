@@ -390,7 +390,7 @@ nav ul li a:hover {
 
 /* ..................SECTION 5 WEDDING DETAILS................... */ 
 #section5 {
-    background-image: url('gallery8.jpeg');
+    background-image: url('gallery14.jpeg');
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -532,6 +532,7 @@ h2, h3, h4, p {
   .gallery-item {
     break-inside: avoid;
     margin-bottom: 15px;
+    width: 100%;
   }
   
   .gallery-item img {
@@ -550,6 +551,7 @@ h2, h3, h4, p {
   .gallery-item:nth-child(9) {
       grid-column: span 2; /* Foto ke-8, 9, dan 10 memenuhi 2 kolom */
   }
+  
   
   /* Lightbox Modal */
   .lightbox {
@@ -951,11 +953,11 @@ footer {
         padding: 8px 16px;
     }
     #section2 {
-        background-image: url('bride.jpeg');
+        background-image: url('groom.jpeg');
     }
 
     #section3 {
-        background-image: url('groom.jpeg');
+        background-image: url('bride.jpeg');
     }
 
     #section5 {
@@ -973,15 +975,15 @@ footer {
     }
 
     #section7 {
-        background-image: url('gallery4.jpeg');
+        background-image: url('gallery14.jpeg');
     }
 
     #section8 {
-        background-image: url('gallery6.jpeg');
+        background-image: url('gallery2.jpeg');
     }
 
     #section9 {
-        background-image: url('gallery7.jpeg');
+        background-image: url('gallery12.jpeg');
     }
 
     #rsvpForm {
