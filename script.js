@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Array dari gambar latar belakang untuk mobile
 const mobileBackgrounds = [
-    'url("gallery1.jpeg")',
+    'url("gallery11.jpeg")',
     'url("gallery4.jpeg")',
     'url("gallery3.jpeg")'
 ];
@@ -55,7 +55,7 @@ const mobileBackgrounds = [
 const desktopBackgrounds = [
     'url("gallery8.jpeg")',
     'url("gallery9.jpeg")',
-    'url("gallery10.jpeg")'
+    'url("gallery13.jpeg")'
 ];
 
 // Fungsi untuk memilih array gambar berdasarkan ukuran layar
@@ -88,7 +88,7 @@ window.addEventListener('resize', function() {
 
   // Countdown timer
 // Countdown timer
-const targetDate = new Date('2025-02-01T10:30:00');
+const targetDate = new Date('2025-02-01T10:00:00');
 
 function updateCountdown() {
     const now = new Date();
