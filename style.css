@@ -524,9 +524,10 @@ h2, h3, h4, p {
 
 /* Masonry Gallery */
 .masonry-gallery {
-    column-count: 2;
-    column-gap: 15px;
-  }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
   
   .gallery-item {
     break-inside: avoid;
@@ -542,6 +543,12 @@ h2, h3, h4, p {
   
   .gallery-item img:hover {
     transform: scale(1.05);
+  }
+
+  .gallery-item:nth-child(3),
+  .gallery-item:nth-child(4),
+  .gallery-item:nth-child(9) {
+      grid-column: span 2; /* Foto ke-8, 9, dan 10 memenuhi 2 kolom */
   }
   
   /* Lightbox Modal */
