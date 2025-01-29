@@ -1,0 +1,983 @@
+/* Define custom properties in :root */
+:root {
+    --section-1: url('section1.jpeg'); /* Ganti dengan path gambar kamu */
+    --primary-color: #001a32;
+    --secondary-color: #C0C5D2;
+    --overlay-1: rgba(255, 255, 255, 0.5);
+  }
+
+body {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+/* .............COVER............... */
+.cover {
+    position: relative; /* Atur elemen sebagai relatif untuk menempatkan overlay */
+    background-image: url('gallery10.jpeg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100vh;
+    text-align: right;
+    z-index: 1; /* Pastikan konten berada di atas overlay */
+    overflow-y: hidden;
+    padding: 10px;
+}
+
+/* Overlay menggunakan pseudo-element */
+.cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay dengan transparansi 50% */
+    z-index: -1; /* Tempatkan overlay di bawah konten */
+}
+
+.cover .guest-name {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: white;
+    z-index: 2; /* Pastikan teks di atas overlay */
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cover button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    z-index: 2; /* Pastikan tombol di atas overlay */
+}
+
+.cover button:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.invitation-content {
+    display: none;
+}
+
+
+/* ..............NAVIGASI.................. */
+
+/* NAVIGASI */
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--overlay-1);
+    border-radius: 50px;
+    z-index: 999;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Jarak antar ikon */
+    justify-content: center;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 20px; /* Ukuran ikon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f4f4f4; /* Warna teks saat hover */
+}
+
+/* Tambahan untuk ikon play/pause */
+#playPauseButton {
+    cursor: pointer;
+}
+
+
+/* ..................SEPERATOR............. */
+.separator {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 5px 0;
+}
+
+.separator::before, 
+.separator::after {
+    content: '';
+    height: 1px; /* Membuat garis horizontal */
+    flex-grow: 1;
+    width: 160px;
+    background-color: white;
+}
+
+/* ...............  ANIMATION............... */
+.fade-in {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+.fade-slide {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.fade-slide.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animasi swipe dari kiri */
+.swipe-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.swipe-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animasi swipe dari kanan */
+.swipe-right {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.swipe-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+  
+
+/* .....................AUDIO CONTROL.................... */
+.audio-controls {
+    position: fixed;
+    top: 50px;
+    left: 20px;
+    z-index: 999; /* Ensure it's above other content */
+    text-align: center;
+    display: none; /* Initially hide the button */
+}
+
+.play-btn {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+/* ..................SECTION............... */
+.section {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Menambahkan overlay untuk memastikan teks terbaca di atas gambar */
+.section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Overlay gelap */
+    z-index: 1;
+}
+
+.section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ................SECTION 1.................. */
+#section1 {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    text-align: right;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.wedding-info {
+    line-height: 1.2;
+}
+
+.wedding-of {
+    color: white;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.bride-groom {
+    font-size: 3.5em;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.wedding-date {
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.quran-verse {
+    max-width: 350px;
+    font-size: 1em;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.ayat {
+    font-family: "Rakkas", serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* ..................SECTION 2..................... */
+#section2 {
+    background-image: url('bride\ -\ Copy.jpeg');
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: right;
+    padding: 20px;
+}
+
+#section2 h2 {
+    color: var(--primary-color);
+    margin: 5px 0;
+    padding: 0;
+    font-size: 2em;
+}
+
+#section2 h3 {
+    font-size: 1.3em;
+    margin: 0;
+    padding: 0;
+}
+
+#section2 p {
+    line-height: 0.5;
+    margin: 10px 0;
+}
+
+.profile {
+    margin-bottom: 50px;
+}
+
+.anakke {
+    font-weight: 600;
+    font-size: 1em;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.parent {
+    font-size: 0.9em;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ..............SECTION 3............. */
+#section3 {
+    background-image: url('groom\ -\ Copy.jpeg');
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+    padding: 20px;
+}
+
+#section3 h2 {
+    color: var(--primary-color);
+    margin: 5px 0;
+    padding: 0;
+    font-size: 2em;
+}
+
+#section3 h3 {
+    font-size: 1.3em;
+    margin: 0;
+    padding: 0;
+}
+
+#section3 p {
+    line-height: 0.5;
+    margin: 10px 0;
+}
+
+.instagram-button {
+    color: white;
+    margin-left: 10px;
+}
+
+
+
+/* ..................SECTION 5 WEDDING DETAILS................... */ 
+#section5 {
+    background-image: url('gallery8.jpeg');
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto; /* Mengisi tinggi layar penuh */
+    overflow-y: hidden;
+    padding: 20px;
+}
+        
+.konten5 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.konten5 h3 {
+    color: white;
+    font-size: 1.6em;
+}
+
+.konten5 h4 {
+    text-decoration: underline;
+    font-size: 1.3em;
+    color: var(--primary-color);
+}
+
+.konten5 p {
+    font-size: 0.8em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+        
+.Judul {
+    text-align: center;
+    margin-bottom: 20px; /* Jarak antara judul dan akad */
+}
+        
+.Akad, .Resepsi {
+    width: 100%;
+    padding: 0 20px; /* Memberi ruang di kiri dan kanan */
+}
+        
+.Resepsi {
+    justify-content: flex-start; /* Posisi di kiri */
+    text-align: left;
+}
+        
+h2, h3, h4, p {
+    margin: 5px 0; /* Mengatur margin untuk elemen teks */
+}
+
+.location-button {
+    font-size: 12px;
+    margin-top: 50px;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.lokasi {
+    margin-bottom: 20px;
+}
+        
+/* COUNTDOWN */
+#countdown {
+    font-size: 0.6em;
+}
+
+#countdown h3 {
+    font-size: 1.6em;
+    margin-bottom: 50px;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Jarak antar item countdown */
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+}
+
+.countdown-item div {
+    padding: 2px;
+}
+
+.countdown-item #days,
+.countdown-item #hours,
+.countdown-item #minutes,
+.countdown-item #seconds {
+    font-size: 2em; /* Ukuran angka */
+}
+
+.countdown-item .label {
+    font-size: 0.8em; /* Ukuran keterangan */
+    color: white;
+}
+
+/* ..............SECTION 6 GALLERY.................. */
+#section6 {
+    background-image: url('gallery9.jpeg');
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: auto;
+    padding: 20px;
+}
+.section6-title {
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+#section6 h2 {
+    font-size: 1.5em;
+    margin-bottom: 50px;
+}
+
+/* Masonry Gallery */
+.masonry-gallery {
+    column-count: 2;
+    column-gap: 15px;
+  }
+  
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 15px;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Lightbox Modal */
+  .lightbox {
+    display: none; /* Hide by default */
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 80%;
+    margin: auto;
+    display: block;
+  }
+  
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .close:hover {
+    color: #bbb;
+  }
+  
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.3s;
+    user-select: none;
+  }
+  
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+
+/* ..............SECTION 7 RSVP & MESSAGES............ */
+#section7 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('gallery10.jpeg');
+    padding: 20px;
+    text-align: center;
+    color: white;
+    height: auto;
+    overflow-y: hidden;
+}
+
+#section7 h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+#rsvpForm {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+#rsvpForm input, #rsvpForm textarea, #rsvpForm select {
+    max-width: 600px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.8em; /* Atau gunakan 16px jika lebih konsisten */
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+input::placeholder {
+    color: white;
+}
+
+textarea::placeholder {
+    color: white;
+}
+
+select {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+}
+
+button {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 10px 20px;
+    font-size: 0.8em;
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+/* TAMPILAN PESAN*/
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 40px;
+}
+
+.message-box, .attendance-box {
+    max-width: 600px;
+    width: 100%;
+    max-height: 400px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    overflow-y: auto; /* Tambahkan scroll vertikal */
+}
+
+.message-box h3, .attendance-box h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    text-align: center;
+    color: white;
+}
+
+.message-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: rgba(32, 33, 39, 0.5);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.attendance-status {
+    width: 100px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    font-style: italic;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.message-item h4 {
+    margin: 0 0 5px 0;
+    font-size: 1em;
+    text-decoration: underline;
+}
+
+.message-item p {
+    margin: 0;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.attendance-grid {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.attendance-item {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-number {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+}
+
+.attendance-label {
+    font-size: 10px;
+    margin-top: 5px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ................SECTION 8 ....................... */
+
+#section8 {
+    background-image: url('gallery8.jpeg');
+    padding: 20px;
+}
+
+#section8 p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Section 8 Styling */
+#wedding-gift {
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.wedding-gift h2 {
+    font-size: 2em;
+    margin-bottom: 50px;
+}
+
+.bank-account {
+    background-color: var(--overlay-1);
+    border-radius: 50px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.bank-account img {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.bank-account p {
+    margin: 0;
+}
+
+#account-number {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#copy-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+#copy-button:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+
+/* Section 9 Styling */
+#section9 {
+    background-image: url('gallery9.jpeg');
+    text-align: center;
+    padding: 40px 20px;
+    color: white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#section9 h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#section9 p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+
+.thank-you-message {
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    background-color: white;
+    padding-bottom: 50px;
+    padding-top: 15px;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .logo img {
+    height: 40px; /* Atur tinggi logo */
+  }
+  
+  .social-media {
+    display: flex;
+  }
+  
+  .social-icon {
+    color: var(--primary-color); /* Warna ikon */
+    font-size: 24px; /* Ukuran ikon */
+    margin-left: 15px; /* Jarak antar ikon */
+    text-decoration: none; /* Menghilangkan garis bawah */
+  }
+  
+  .social-icon:hover {
+    color: black; /* Warna saat hover */
+  }
+
+
+/* Responsif untuk teks agar tetap terbaca di perangkat kecil */
+@media (max-width: 768px) {
+    .cover {
+        background-image: url('gallery1.jpeg')
+    }
+
+    .section {
+        padding: 10px;
+    }
+
+    .cover h1 {
+        font-size: 2em;
+    }
+
+    .cover .guest-name {
+        font-size: 1.2em;
+    }
+
+    .cover button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+    #section2 {
+        background-image: url('bride.jpeg');
+    }
+
+    #section3 {
+        background-image: url('groom.jpeg');
+    }
+
+    #section5 {
+        background-image: url('gallery5.jpeg');
+        height: 100vh;
+    }
+    .konten5 {
+        justify-content: space-around;
+        height: 100%;
+    }
+
+    #section6 {
+        height: auto;
+        background-image: url('gallery3.jpeg');
+    }
+
+    #section7 {
+        background-image: url('gallery4.jpeg');
+    }
+
+    #section8 {
+        background-image: url('gallery6.jpeg');
+    }
+
+    #section9 {
+        background-image: url('gallery7.jpeg');
+    }
+
+    #rsvpForm {
+        min-width: 100%;
+    }
+}
