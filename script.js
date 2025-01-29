@@ -88,7 +88,7 @@ window.addEventListener('resize', function() {
 
   // Countdown timer
 // Countdown timer
-const targetDate = new Date('2025-02-01T10:00:00');
+const targetDate = new Date('2025-02-01T10:30:00');
 
 function updateCountdown() {
     const now = new Date();
